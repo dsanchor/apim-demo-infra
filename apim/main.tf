@@ -25,7 +25,7 @@ terraform {
 # Constructed names of resources
 locals {
   resourceGroupName = "${var.prefix}-${var.environment}-rg"
-  apimName          = "${var.prefix}-${var.environment}-apim"
+  apimName          = "${var.prefix}-${var.environment}-apim-${var.uniqueId}"
   sku_name          = "${var.apimSku}_${var.apimSkuCapacity}"         
   storageAccountName= "${var.prefix}${var.environment}apimsa${var.uniqueId}"
 

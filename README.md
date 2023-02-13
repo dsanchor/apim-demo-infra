@@ -127,9 +127,11 @@ We have included a [GitHub Action](.github/workflows/apim-deployment.yaml) to ru
 This automation will create the following resources:
 - Resource group
 - API Management service
-- Storage account for future use we will explain later
+- Storage account for future use (to store the API Management APIs descriptors and the API Management policies. We will use this storage account in the next steps of the demo).
 
-The storage account that we create in this automation has to be unique named. To make sure it is unique, modify the *apim.tfvars* file and change the value of the *uniqueId* variable. The final value of this storage account names will be formed by *"${var.prefix}${var.environment}apimsa${var.uniqueId}"* expression. The purpose of this storage account is to store the API Management APIs descriptors and the API Management policies. We will use this storage account in the next steps of the demo.
+The storage account and the API Management service that we create in this automation have to be unique named. To make sure they are unique, modify the *apim.tfvars* file and change the value of the *uniqueId* variable. The final value of both names will be:
+- storage account name: *"${var.prefix}${var.environment}apimsa${var.uniqueId}"*
+- API Management service name: *"${var.prefix}${var.environment}-apim-${var.uniqueId}"*
 
 To run the automation, push the changes to the *dev* branch. The automation will run automatically.
 
