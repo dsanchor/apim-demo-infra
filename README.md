@@ -7,12 +7,32 @@ This repository contains the main infrastructure for the Azure API Management de
 ## Prerequisites
 
 This demo requires the following prerequisites:
+- Fork this repository and clone it locally. 
 - An Azure subscription
 - The Azure CLI
 - A Service Principal with Contributor rights on the subscription
 - Setup credentials in Github Secrets
 - Create an storage account and a container for the Terraform state
-- Fork this repository and clone it locally. 
+
+See next sections for instructions on how to set up these prerequisites.
+
+### Fork and clone the repository
+
+Fork this repository first. 
+Then, clone it locally by running the following command in the directory where you want to have the repository:
+
+```bash
+git clone <your_repository>.git
+```
+
+Move to the *dev* branch:
+
+```bash
+git checkout dev
+```
+
+We will use the *dev* branch to make changes to the infrastructure which will be deployed as the Develpoment environment. The *main* branch will be used to deploy the Production environment after the changes have been tested in the Development environment, create a PR from the *dev* branch to the *main* branch and merge it.
+
 
 ### Azure subscription
 
@@ -103,22 +123,6 @@ echo $STORAGE_ACCOUNT_NAME
 az storage container create --name dev-tfapim --account-name $STORAGE_ACCOUNT_NAME --subscription $SUBSCRIPTION_ID
 az storage container create --name main-tfapim --account-name $STORAGE_ACCOUNT_NAME --subscription $SUBSCRIPTION_ID
 ```
-
-### Fork and clone the repository
-
-Fork this repository. Then clone it locally by running the following command in the directory where you want to have the repository:
-
-```bash
-git clone <your_repository>.git
-```
-
-Move to the *dev* branch:
-
-```bash
-git checkout dev
-```
-
-We will use the *dev* branch to make changes to the infrastructure which will be deployed as the Develpoment environment. The *main* branch will be used to deploy the Production environment after the changes have been tested in the Development environment, create a PR from the *dev* branch to the *main* branch and merge it.
 
 # Run the automation
 
