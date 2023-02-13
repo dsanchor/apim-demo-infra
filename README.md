@@ -58,10 +58,10 @@ For details, see the instructions in the [Azure CLI documentation](https://docs.
 
 We will create the following secrets in Github Secrets, where all values are the ones you got from the previous step:
 
-- TF_ARM_CLIENT_ID=<appId>
-- TF_ARM_CLIENT_SECRET=<password>
-- TENANT_ID=<tenant>
-- SUBSCRIPTION_ID=<subscriptionID>
+- TF_ARM_CLIENT_ID=<*appId*>
+- TF_ARM_CLIENT_SECRET=<*password*>
+- TENANT_ID=<*tenant*>
+- SUBSCRIPTION_ID=<*subscriptionID*>
 
 ### Storage account and container
 
