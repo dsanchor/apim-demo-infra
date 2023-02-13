@@ -1,0 +1,41 @@
+name: APIM deployment
+
+on:
+  push:
+    branches: 
+      - main
+      - dev
+    paths:
+      - 'apim/*'
+      - '.github/workflows/apim-deployment.yaml'
+  workflow_dispatch:
+
+jobs:
+  provision-infrastructure:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apim
+
+    env:
+      ARM_CLIENT_ID: ${{secrets.TF_ARM_CLIENT_ID}}
+      ARM_CLIENT_SECRET: ${{secrets.TF_ARM_CLIENT_SECRET}}
+      ARM_SUBSCRIPTION_ID: ${{secrets.SUBSCRIPTION_ID}}
+      ARM_TENANT_ID: ${{secrets.TENANT_ID}}
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set env
+        id: step_one
+        run: |
+          echo "TF_BACKEND_CONTAINER_NAME=${{ github.ref_name }}-tfapim" >> $GITHUB_ENV
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        run: terraform init -backend-config=container_name=$TF_BACKEND_CONTAINER_NAME
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve -var-file apim.tfvars -var="environment=${{ github.ref_name }}"
