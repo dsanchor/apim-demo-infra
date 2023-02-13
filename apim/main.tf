@@ -27,7 +27,7 @@ locals {
   resourceGroupName = "${var.prefix}-${var.environment}-rg"
   apimName          = "${var.prefix}-${var.environment}-apim"
   sku_name          = "${var.apimSku}_${var.apimSkuCapacity}"         
-  storageAccountName= "${var.prefix}${var.environment}apimsa"
+  storageAccountName= "${var.prefix}${var.environment}apimsa${var.uniqueId}"
 
 }
 

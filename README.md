@@ -76,7 +76,7 @@ export RESOURCE_GROUP=terraform-global-rg
 - Create the resource group:
 
 ```bash
-az group create --name $RESOURCE_GROUP --location westeurope
+az group create --name $RESOURCE_GROUP --location westeurope --subscription $SUBSCRIPTION_ID
 ```
 
 - Init the STORAGE_ACCOUNT_NAME variable with the name of the storage account you want to use:
@@ -88,13 +88,20 @@ export STORAGE_ACCOUNT_NAME=tfstategithub$RANDOM
 - Create the storage account:
 
 ```bash
-az storage account create --name $STORAGE_ACCOUNT_NAME --resource-group $RESOURCE_GROUP --location westeurope --sku Standard_LRS
+az storage account create --name $STORAGE_ACCOUNT_NAME --resource-group $RESOURCE_GROUP --location westeurope --sku Standard_LRS --subscription $SUBSCRIPTION_ID
 ```
 
 - Under *apim* directory, find the *main.tf* file and modify the name of the *storage_account_name* variable with the value of the STORAGE_ACCOUNT_NAME variable. To get the value of the STORAGE_ACCOUNT_NAME variable, run the following command:
 
 ```bash
 echo $STORAGE_ACCOUNT_NAME
+```
+
+- Create both containers for *dev* and *main* environments:
+
+```bash
+az storage container create --name dev-tfapim --account-name $STORAGE_ACCOUNT_NAME --subscription $SUBSCRIPTION_ID
+az storage container create --name main-tfapim --account-name $STORAGE_ACCOUNT_NAME --subscription $SUBSCRIPTION_ID
 ```
 
 ### Fork and clone the repository
@@ -121,6 +128,8 @@ This automation will create the following resources:
 - Resource group
 - API Management service
 - Storage account for future use we will explain later
+
+The storage account that we create in this automation has to be unique named. To make sure it is unique, modify the *apim.tfvars* file and change the value of the *uniqueId* variable. The final value of this storage account names will be formed by *"${var.prefix}${var.environment}apimsa${var.uniqueId}"* expression. The purpose of this storage account is to store the API Management APIs descriptors and the API Management policies. We will use this storage account in the next steps of the demo.
 
 To run the automation, push the changes to the *dev* branch. The automation will run automatically.
 

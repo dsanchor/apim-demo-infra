@@ -12,6 +12,10 @@ variable "prefix" {
     type = string
 }
 
+variable "uniqueId" {
+    type = string
+}
+
 variable "environment" {
     type = string
 }
