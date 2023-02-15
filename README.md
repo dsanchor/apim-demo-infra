@@ -76,7 +76,7 @@ For details, see the instructions in the [Azure CLI documentation](https://docs.
 
 ### Github Secrets
 
-We will create the following secrets in Github Secrets, where all values are the ones you got from the previous step:
+We will create the following secrets in [Github Secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository), where all values are the ones you got from the previous step:
 
 - TF_ARM_CLIENT_ID=<*appId*>
 - TF_ARM_CLIENT_SECRET=<*password*>
@@ -138,6 +138,7 @@ The storage account and the API Management service that we create in this automa
 - API Management service name: *"${var.prefix}${var.environment}-apim-${var.uniqueId}"*
 
 To run the automation, push the changes to the *dev* branch. The automation will run automatically.
+Remember to activate GitHub actions in your repository before execute git push.
 
 ```bash	
 git add .
