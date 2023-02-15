@@ -2,7 +2,7 @@
 location = "westeurope"
 region = "westeurope"
 prefix = "contoso"
-uniqueId = "0412"
+uniqueId = "041218"
 apimSku = "Developer"
 apimSkuCapacity = 1
 apimPublisherName = "Contoso"
