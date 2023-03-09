@@ -81,6 +81,7 @@ resource "azurerm_api_management_product" "premium" {
   display_name          = "Premium"
   subscription_required = true
   approval_required     = true
+  subscriptions_limit   = 1
   published             = true
 }
 
