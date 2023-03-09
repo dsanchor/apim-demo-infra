@@ -66,16 +66,8 @@ resource "azurerm_api_management_product_policy" "starter" {
   <policies>
     <inbound>
       <base />
-      <rate-limit calls="10" renewal-period="60" counter-key="@(context.Subscription.Id)">
-        <renewal-key>
-          <header name="Ocp-Apim-Subscription-Key" exists-action="override" />
-        </renewal-key>
-      </rate-limit>
-      <quota calls="100" renewal-period="3600" counter-key="@(context.Subscription.Id)">
-        <renewal-key>
-          <header name="Ocp-Apim-Subscription-Key" exists-action="override" />
-        </renewal-key>
-      </quota>
+      <rate-limit calls="10" renewal-period="60"/>
+      <quota calls="100" renewal-period="3600"/>
     </inbound>
   </policies>
   XML
@@ -101,16 +93,8 @@ resource "azurerm_api_management_product_policy" "premium" {
   <policies>
     <inbound>
       <base />
-      <rate-limit calls="600" renewal-period="60" counter-key="@(context.Subscription.Id)">
-        <renewal-key>
-          <header name="Ocp-Apim-Subscription-Key" exists-action="override" />
-        </renewal-key>
-      </rate-limit>
-      <quota calls="10000" renewal-period="3600" counter-key="@(context.Subscription.Id)">
-        <renewal-key>
-          <header name="Ocp-Apim-Subscription-Key" exists-action="override" />
-        </renewal-key>
-      </quota>
+      <rate-limit calls="600" renewal-period="60"/>
+      <quota calls="10000" renewal-period="3600"/>
     </inbound>
   </policies>
   XML
