@@ -56,10 +56,11 @@ resource "azurerm_api_management_product" "starter" {
   published             = true
 }
 
+
 resource "azurerm_api_management_product_policy" "starter" {
-  product_id          = data.azurerm_api_management_product.starter.product_id
-  api_management_name = data.azurerm_api_management_product.apim.api_management_name
-  resource_group_name = data.azurerm_api_management_product.rg.resource_group_name
+  product_id          = azurerm_api_management_product.starter.product_id
+  api_management_name = azurerm_api_management_product.apim.api_management_name
+  resource_group_name = azurerm_api_management_product.rg.resource_group_name
 
   xml_content = <<XML
   <policies>
@@ -92,9 +93,9 @@ resource "azurerm_api_management_product" "premium" {
 }
 
 resource "azurerm_api_management_product_policy" "premium" {
-  product_id          = data.azurerm_api_management_product.premium.product_id
-  api_management_name = data.azurerm_api_management_product.apim.api_management_name
-  resource_group_name = data.azurerm_api_management_product.rg.resource_group_name
+  product_id          = azurerm_api_management_product.premium.product_id
+  api_management_name = azurerm_api_management_product.apim.api_management_name
+  resource_group_name = azurerm_api_management_product.rg.resource_group_name
 
   xml_content = <<XML
   <policies>
