@@ -139,8 +139,35 @@ The storage account and the API Management service that we create in this automa
 
 To run the automation, push the changes to the *dev* branch. The automation will run automatically.
 
+
 ```bash	
 git add .
 git commit -m "Initial commit"
 git push origin dev
 ```
+
+# Register identity
+
+In order to test some feature we will need an OAuth identity, so we will proceed to create an App Registration in Azure Active Directory. To do so, we will execute this Terraform templates with an account that has at least *Application.ReadWrite.All* permissions [Create AAD application](https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal)
+
+Open a command prompt in local and navigate to the content of the repo, go to apim folder.
+
+Create the app registration
+```bash
+terraform init
+terraform apply -auto-approve
+```
+This will create an App Registration named: "Cloud Solution Architect APIM Demo App"
+
+delete main.tf file and rename main.tfconfigure to main.tf
+
+```bash
+terraform apply -auto-approve
+```
+
+This will configure the App: add scopes, give permissions to az-cli to request an access token, etc...
+
+
+# Next steps
+
+Once we have all the infrastructure deployed we can continue working, by registering APIs into APIM and assign policies. For that, go to repo: [apim-demo-apis](https://github.com/dsanchor/apim-demo-apis)
