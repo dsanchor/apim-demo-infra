@@ -51,6 +51,7 @@ resource "azurerm_api_management_product" "starter" {
   api_management_name   = azurerm_api_management.apim.name
   resource_group_name   = azurerm_resource_group.rg.name
   display_name          = "Starter"
+  description           = "A subscription to this product will allow you to make 100 calls per hour. Rate limit applied: 10 calls per minute."
   subscription_required = true
   approval_required     = false
   published             = true
@@ -79,6 +80,7 @@ resource "azurerm_api_management_product" "premium" {
   api_management_name   = azurerm_api_management.apim.name
   resource_group_name   = azurerm_resource_group.rg.name
   display_name          = "Premium"
+  description           = "A subscription to this product will allow you to make 10,000 calls per hour. Rate limit applied: 600 calls per minute."
   subscription_required = true
   approval_required     = true
   subscriptions_limit   = 1
