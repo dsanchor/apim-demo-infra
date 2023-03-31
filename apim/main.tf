@@ -103,7 +103,7 @@ resource "azurerm_api_management_product_policy" "premium" {
 }
 
 #Add users to the APIM
-resource "azurerm_api_management_user" "example" {
+resource "azurerm_api_management_user" "js" {
   user_id             = "5931a75ae4bbd512288c680b"
   api_management_name = azurerm_api_management.apim.name
   resource_group_name = azurerm_resource_group.rg.name
@@ -113,7 +113,7 @@ resource "azurerm_api_management_user" "example" {
   state               = "active"
 }
 
-resource "azurerm_api_management_user" "example" {
+resource "azurerm_api_management_user" "jd" {
   user_id             = "5931a75ae4bbd512288c680c"
   api_management_name = azurerm_api_management.apim.name
   resource_group_name = azurerm_resource_group.rg.name
