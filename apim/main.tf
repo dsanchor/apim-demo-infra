@@ -102,26 +102,23 @@ resource "azurerm_api_management_product_policy" "premium" {
 
 }
 
-#Add subscription to starter product
-data "azurerm_api_management_product" "starter" {
-  product_id            = "starter"
-  api_management_name   = azurerm_api_management.apim.name
-  resource_group_name   = azurerm_resource_group.rg.name
+#Add users to the APIM
+resource "azurerm_api_management_user" "example" {
+  user_id             = "5931a75ae4bbd512288c680b"
+  api_management_name = azurerm_api_management.apim.name
+  resource_group_name = azurerm_resource_group.rg.name
+  first_name          = "John"
+  last_name           = "Smith"
+  email               = "js@contoso.com"
+  state               = "active"
 }
 
-resource "azurerm_api_management_subscription" "startersub" {
-  api_management_name   = azurerm_api_management.apim.name
-  resource_group_name   = azurerm_resource_group.rg.name
-  product_id            = data.azurerm_api_management_product.starter.product_id
-  display_name          = "Starter"
-  state                 = "active"
-}
-
-#Add subscription to premium product
-resource "azurerm_api_management_subscription" "premiumsub" {
-  api_management_name   = azurerm_api_management.apim.name
-  resource_group_name   = azurerm_resource_group.rg.name
-  product_id            = azurerm_api_management_product.premium.product_id
-  display_name          = "Premium"
-  state                 = "active"
+resource "azurerm_api_management_user" "example" {
+  user_id             = "5931a75ae4bbd512288c680c"
+  api_management_name = azurerm_api_management.apim.name
+  resource_group_name = azurerm_resource_group.rg.name
+  first_name          = "Jane"
+  last_name           = "Doe"
+  email               = "jd@contoso.com"
+  state               = "active"
 }
