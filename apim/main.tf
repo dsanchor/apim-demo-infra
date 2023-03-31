@@ -127,6 +127,7 @@ resource "azurerm_api_management_user" "jd" {
 resource "azurerm_api_management_subscription" "starter" {
   api_management_name   = azurerm_api_management.apim.name
   resource_group_name   = azurerm_resource_group.rg.name
+  product_id            = azurerm_api_management_product.starter.product_id
   user_id               = azurerm_api_management_user.js.user_id
   display_name          = "Starter"
   state                 = "active"
