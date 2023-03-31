@@ -17,7 +17,7 @@ provider "azurerm" {
 terraform {
   backend "azurerm" {
     resource_group_name  = "terraform-global-rg"
-    storage_account_name = "tfstategithub11184"
+    storage_account_name = "tfstategithub1328673397"
     key                  = "tfgithubactions.tfstate"
   }
 }
