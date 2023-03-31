@@ -124,12 +124,11 @@ resource "azurerm_api_management_user" "jd" {
 }
 
 #Add users to a api management subscription
-resource "azurerm_api_management_subscription" "starter" {
+resource "azurerm_api_management_subscription" "jsstarter" {
   api_management_name   = azurerm_api_management.apim.name
   resource_group_name   = azurerm_resource_group.rg.name
-  product_id            = azurerm_api_management_product.starter.product_id
+  product_id            = azurerm_api_management_product.starter.display_name
   user_id               = azurerm_api_management_user.js.user_id
-  display_name          = "Starter"
-  state                 = "active"
+  display_name          = "Product Starter subscription"
 }
 
