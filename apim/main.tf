@@ -17,7 +17,7 @@ provider "azurerm" {
 terraform {
   backend "azurerm" {
     resource_group_name  = "terraform-global-rg"
-    storage_account_name = "tfstategithub11184"
+    storage_account_name = "tfstategithub1328673397"
     key                  = "tfgithubactions.tfstate"
   }
 }
@@ -101,3 +101,42 @@ resource "azurerm_api_management_product_policy" "premium" {
   XML
 
 }
+
+#Add users to the APIM
+resource "azurerm_api_management_user" "js" {
+  user_id             = "5931a75ae4bbd512288c680b"
+  api_management_name = azurerm_api_management.apim.name
+  resource_group_name = azurerm_resource_group.rg.name
+  first_name          = "John"
+  last_name           = "Smith"
+  email               = "js@contoso.com"
+  state               = "active"
+}
+
+resource "azurerm_api_management_user" "jd" {
+  user_id             = "5931a75ae4bbd512288c680c"
+  api_management_name = azurerm_api_management.apim.name
+  resource_group_name = azurerm_resource_group.rg.name
+  first_name          = "Jane"
+  last_name           = "Doe"
+  email               = "jd@contoso.com"
+  state               = "active"
+}
+
+#Add users to a api management subscription
+resource "azurerm_api_management_subscription" "jsstarter" {
+  api_management_name   = azurerm_api_management.apim.name
+  resource_group_name   = azurerm_resource_group.rg.name
+  product_id            = azurerm_api_management_product.starter.id
+  user_id               = azurerm_api_management_user.js.id
+  display_name          = "Product Starter subscription"
+}
+
+resource "azurerm_api_management_subscription" "jdpremium" {
+  api_management_name   = azurerm_api_management.apim.name
+  resource_group_name   = azurerm_resource_group.rg.name
+  product_id            = azurerm_api_management_product.premium.id
+  user_id               = azurerm_api_management_user.jd.id
+  display_name          = "Product Premium subscription"
+}
+
